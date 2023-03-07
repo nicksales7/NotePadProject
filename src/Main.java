@@ -15,41 +15,46 @@ public class Main {
         notepadWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         notepadWindow.setSize(1280, 720);
 
-        //Setting up the File fileMenu bar
-        JMenuBar fileBar = new JMenuBar();
+        //Setting up the File bar
+        JMenuBar menuBar = new JMenuBar();
+
+        //Set up file bar items
         JMenu fileMenu = new JMenu("File");
-
-
-        //------>Start of fileMenu items for the file bar<------
         JMenuItem newItem = new JMenuItem("New");
-        fileMenu.add(newItem);
-
         JMenuItem newWindowItem = new JMenuItem("New Window");
-        fileMenu.add(newWindowItem);
-
         JMenuItem openItem = new JMenuItem("Open");
-        fileMenu.add(openItem);
-
         JMenuItem saveItem = new JMenuItem("Save");
-        fileMenu.add(saveItem);
-
         JMenuItem saveAsItem = new JMenuItem("Save As");
-        fileMenu.add(saveAsItem);
-
         JMenuItem pageSetupItem = new JMenuItem("Page Setup");
-        fileMenu.add(pageSetupItem);
-
         JMenuItem printItem = new JMenuItem("Print");
-        fileMenu.add(printItem);
-
         JMenuItem exitItem = new JMenuItem("Exit");
+
+        //Add file bar items
+        fileMenu.add(newItem);
+        fileMenu.add(newWindowItem);
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
+        fileMenu.add(saveAsItem);
+        fileMenu.add(pageSetupItem);
+        fileMenu.add(printItem);
         fileMenu.add(exitItem);
-        //------>End of fileMenu items for the file bar<------
+
+        //Add the file menu
+        menuBar.add(fileMenu);
+
+        //Set up edit bar items
+        JMenu editMenu = new JMenu("Edit");
+        JMenuItem undoItem = new JMenuItem("Undo");
+
+        //Add edit bar items
+        editMenu.add(undoItem);
+
+        //Add the edit menu
+        menuBar.add(editMenu);
 
 
-        //Making all the menu bars visible
-        fileBar.add(fileMenu);
-        notepadWindow.setJMenuBar(fileBar);
+        //Making the menu bar visible
+        notepadWindow.setJMenuBar(menuBar);
 
 
         //Notepad area
