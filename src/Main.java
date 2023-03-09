@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
         Frame();
-
     }
 
     public static void Frame() {
@@ -39,22 +41,41 @@ public class Main {
         fileMenu.add(printItem);
         fileMenu.add(exitItem);
 
-        //Add the file menu
-        menuBar.add(fileMenu);
+        //Save item function
+        saveItem.addActionListener(e -> {
+            // Code to be executed when the "saveItem" is pressed
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showSaveDialog(saveItem);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+                try (FileWriter writer = new FileWriter(fileToSave)) {
+                    writer.write("xd");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
 
         //Set up edit bar items
         JMenu editMenu = new JMenu("Edit");
         JMenuItem undoItem = new JMenuItem("Undo");
+        JMenuItem redoItem = new JMenuItem("Redo");
+        JMenuItem cutItem = new JMenuItem("Cut");
+        JMenuItem copyItem = new JMenuItem("Copy");
+        JMenuItem pasteItem = new JMenuItem("Paste");
 
         //Add edit bar items
         editMenu.add(undoItem);
+        editMenu.add(redoItem);
+        editMenu.addSeparator(); //Separation
+        editMenu.add(cutItem);
+        editMenu.add(copyItem);
+        editMenu.add(pasteItem);
 
-        //Add the edit menu
+        //Making menu items visible
+        menuBar.add(fileMenu);
         menuBar.add(editMenu);
-
-
-        //Making the menu bar visible
-        notepadWindow.setJMenuBar(menuBar);
 
 
         //Notepad area
@@ -62,8 +83,9 @@ public class Main {
         notepad.setPreferredSize(new Dimension(1280, 720));
         notepadWindow.add(notepad);
 
-        //Setting the notepadWindow visible
-        notepadWindow.setVisible(true);
+        //Setting items as visible
+        notepadWindow.setVisible(true); //Notepad
+        notepadWindow.setJMenuBar(menuBar); //Menu Bar
     }
 
     public static void Layout() {
